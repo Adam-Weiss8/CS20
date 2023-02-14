@@ -1,0 +1,74 @@
+
+<html>
+        <head>
+                <title>Joe's Hotdogs</title>
+                
+                <style>
+                        div {
+                                font-size: 30px;
+                        }
+                </style>
+
+                <script>
+                        function order(){
+                                document.write("<div>");
+                                document.write("<h1>reciept</h1>")
+                                //prompt for user's order
+                                numdogs = prompt("How many hotdogs");
+                                numfries = prompt("How many fries");
+                                numdrinks = prompt("How many drinks");
+                                
+                                //calculate subtotal
+                                subtotal = (numdogs * 4) + (numfries * 3.5) + (numdrinks * 1.75);
+                                
+                                
+                                //calculate discount
+                                discount = 0;
+                                discountSubtotal = subtotal;
+                                if (subtotal >= 20) {
+                                        discount = subtotal * .10;
+                                        discount = Math.round(discount * 100) / 100;
+                                        discountSubtotal = subtotal * .90;
+                                }
+
+                                //calculate sales tax
+                                tax = discountSubtotal * .0625;
+                                tax = Math.round(tax * 100) / 100;
+
+                                //final cost
+                                final = discountSubtotal + tax;
+
+                                //print reciept to page
+                                document.write("Hotdogs: " + numdogs + "<br>");
+                                document.write("Fries: " + numfries + "<br>");
+                                document.write("Drinks: " + numdrinks + "<br>");
+
+                                document.write("Subtotal: $" + subtotal + "<br>");
+
+                                if (discount != 0) {
+                                        document.write("Discount: $" + discount + "<br>");
+                                }
+
+                                document.write("Massachusetts Sales Tax 6.25%: $" + tax + "<br>");
+
+                                final = Math.round(final * 100) / 100;
+                                document.write("Final Total: $" + final);
+                                document.write("</div>")
+
+                        }
+                </script>
+        </head>
+        
+        <body>
+                <h1 style="text-align: center;">Joe's Hotdogs Menu</h1>
+                <div style="text-align: center; padding: 30; background-color: aqua;">
+                        <div>Hot Dog - $4</div>
+                        <div>French Fries - $3.50</div>
+                        <div>Drinks - $1.75</div>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                <button onclick="order()" style="padding: 10px 10px; text-align: center;">ORDER HERE</button>
+                </div>
+        </body>
+</html>

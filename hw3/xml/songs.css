@@ -1,0 +1,38 @@
+songs {  
+        margin: 100px auto 0 auto; 
+        padding: 20px;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        min-height: 300px; 
+}
+
+song {
+        display: block;
+        margin: 20px;
+        padding: 20px;
+        border: 2px solid rgb(255, 0, 0);
+}
+
+song title {
+        font-size: 50px;
+        color: blue;
+        padding-right: 20px;
+}
+
+song artists artist {
+        display: block;
+        color: #d0864e;
+        font-size: 30px;
+}
+
+song genre {
+        display: inline-block;
+        color: blueviolet;
+        font-size: 20px;
+}
+
+song releaseYear {
+        display: block;
+
+}
+
+        

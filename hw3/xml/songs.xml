@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href = "songs.css" ?>
+
+<songs>
+        <song>
+                <title>Radioactive</title>
+
+                <artists>
+                        <artist>Imagine Dragons</artist>
+                </artists>
+
+                <genres>
+                        <genre>Pop</genre>
+                        <genre>Alternative</genre>
+                </genres>
+
+                <releaseYear>2012</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Mountain Sound</title>
+
+                <artists>
+                        <artist>Of Monsters And Men</artist>
+                </artists>
+
+                <genres>
+                        <genre>Indie</genre>
+                        <genre>Folk</genre>
+                </genres>
+
+                <releaseYear>2011</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Finish Line</title>
+
+                <artists>
+                        <artist>Chance the Rapper</artist>
+                        <artist>Eryn Allen Kane</artist>
+                        <artist>T-Pain</artist>
+                        <artist>Kirk Franklin</artist>
+                </artists>
+
+                <genres>
+                        <genre>Rap</genre>
+                        <genre>RnB</genre>
+                </genres>
+
+                <releaseYear>2016</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Fly As Me</title>
+
+                <artists>
+                        <artist>Silk Sonic</artist>
+                        <artist>Bruno Mars</artist>
+                        <artist>Anderson .Paak</artist>
+                </artists>
+
+                <genres>
+                        <genre>Soul</genre>
+                        <genre>Funk</genre>
+                </genres>
+
+                <releaseYear>2021</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Welcome to Paradise</title>
+
+                <artists>
+                        <artist>Green Day</artist>
+                </artists>
+
+                <genres>
+                        <genre>Rock</genre>
+                </genres>
+
+                <releaseYear>1991</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>All Too Well</title>
+
+                <artists>
+                        <artist>Taylor Swift</artist>
+                </artists>
+
+                <genres>
+                        <genre>Pop</genre>
+                        <genre>Country</genre>
+                </genres>
+
+                <releaseYear>2012</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Good Old Days</title>
+
+                <artists>
+                        <artist>Macklemore</artist>
+                        <artist>Ryan Lewis</artist>
+                        <artist>Ke$ha</artist>
+                </artists>
+
+                <genres>
+                        <genre>Hip-Hop</genre>
+                </genres>
+
+                <releaseYear>2017</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Gold On the Ceiling</title>
+
+                <artists>
+                        <artist>The Black Keys</artist>
+                </artists>
+
+                <genres>
+                        <genre>Alternative</genre>
+                        <genre>Rock</genre>
+                </genres>
+
+                <releaseYear>2011</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Purple Haze</title>
+
+                <artists>
+                        <artist>Jimi Hendrix</artist>
+                </artists>
+
+                <genres>
+                        <genre>Rock</genre>
+                </genres>
+
+                <releaseYear>1967</releaseYear>
+        
+        </song>
+
+
+        <song>
+                <title>Banana Pancakes</title>
+
+                <artists>
+                        <artist>Jack Johnson</artist>
+                </artists>
+
+                <genres>
+                        <genre>Acoustic</genre>
+                        <genre>Pop</genre>
+                </genres>
+
+                <releaseYear>2005</releaseYear>
+        
+        </song>
+
+
+</songs>
