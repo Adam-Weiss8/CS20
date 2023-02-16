@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>TicTacToe</title>
+                
+                
+                <script>
+                        //handle whos turn it is
+                        var turn;
+                        //handle the state of the board
+                        var boardData = new Array(9).fill("");
+                        var filled = new Array(9).fill(false);
+                        //keep the turn count
+                        var count = 0;
+
+                        
+                        /* Call this function on load and when the reset button is clicked */
+                        function reset() {
+                                //random turn and set turn
+                                random = Math.floor(Math.random() * 2);
+                                
+                                if(random == 0) {
+                                        document.getElementById("turn").innerHTML = "IT'S O's TURN!";
+                                } else {
+                                        document.getElementById("turn").innerHTML = "IT'S X's TURN!";
+                                }
+                                
+                                //set all buttons to empty
+                                for (i = 0; i < 9; i++) {
+                                        let id = i.toString();
+                                        let element = document.getElementById(id);
+                                        element.innerHTML = "";
+                                }
+
+                                //set turn
+                                if (random == 0) {
+                                        turn = "O";
+                                } else if (random == 1) {
+                                        turn == "X";
+                                }
+
+                                //reset board data
+                                boardData.fill("");
+                                filled.fill(false);
+                                count = 0;
+                        }
+
+                        /* Call this function when a spot on the board is clicked to fill it */
+                        function fillSquare(square, letter) {
+                                //Check if the clicked box is filled yet
+                                if (filled[parseInt(square)] == false) {
+                                        document.getElementById(square).innerHTML = letter;
+                                        filled[parseInt(square)] = true;
+                                        count = count + 1;
+                                        boardData[parseInt(square)] = letter;
+                                        changeTurn();
+
+                                        if (detectWin() == "X") {
+                                                document.getElementById("turn").innerHTML = "X WINS!";
+                                                filled.fill(true);
+                                        } else if (detectWin() == "O") {
+                                                document.getElementById("turn").innerHTML = "O WINS!";
+                                                filled.fill(true);
+                                        } else if (count == 9) {
+                                                document.getElementById("turn").innerHTML = "STALEMATE! ITS A TIE";
+                                        }
+                                }
+                                
+                                
+                               
+                        }
+
+                        /* Call this function inside the fillSquare function to change whos turn it is */
+                        function changeTurn() {
+                                if (turn == "X") {
+                                        turn = "O";
+                                        document.getElementById("turn").innerHTML = "IT'S O's TURN!";
+                                } else if (turn == "O") {
+                                        turn = "X";
+                                        document.getElementById("turn").innerHTML = "IT'S X's TURN!";
+                                }
+                        }
+
+                        // Call this function every time a new square is filled to check for a win
+                        function detectWin() {
+                                //Horizotal rows
+                                for (i = 0; i < 9; i += 3) {
+                                        if (boardData[i] == boardData[i + 1] && boardData[i + 1] == boardData[i + 2] && boardData[i] != "") {
+                                                return boardData[i];
+                                        }
+                                }
+                                        
+                                // Vertical win
+                                for (i = 0; i < 3; i++) {
+                                        if (boardData[i] == boardData[i + 3] && boardData[i + 3] == boardData[i + 6] && boardData[i] != "") {
+                                                return boardData[i];
+                                        }
+                                }
+                                
+                                // Diagonal win
+                                if (boardData[0] == boardData[4] && boardData[4] == boardData[8] && boardData[0] != "") {
+                                        return boardData[0];
+                                }
+                                
+                                if (boardData[2] == boardData[4] && boardData[4] == boardData[6] && boardData[2] != "") {
+                                        return boardData[2];
+                                }
+                                
+                                // Return 0 if there is no winner
+                                return ""; 
+                        }
+                        
+                </script>
+
+
+
+
+
+
+                <style>
+                        table {
+                                border-collapse: collapse;
+                                width: 50%;
+                                margin: 0 auto;
+                                background-color: coral;
+                        }
+
+                        th, td {
+                                text-align: center;
+                                padding: 8px;
+                                border: 3px solid rgba(2, 18, 239, 0.549);
+                        }
+
+                        h1 {
+                                text-align: center;
+                                color: crimson;
+                                font-size: 50px;
+                                font-family:cursive;
+                        }
+
+                        h2 {
+                                text-align: center;
+                        }
+
+                        button.space {
+                                width: 120px;
+                                height: 120px;
+                                font-size: 100px;
+                                margin: 20px;
+                                background-color: black;
+                                color: aqua;
+                        }
+
+                        div#reset {
+                                text-align: center;
+                                margin-top: 20px;
+                        }
+
+                        button#restart {
+                                width: 120px;
+                                height: 50px;
+                                font-size: 15px;
+                                font-family: cursive;
+                        }
+                </style>
+        </head>
+        <body onload="reset()">
+               <h1 id="header">Let's Play TicTacToe</h1>
+               <h2 id="turn">Who's turn</h2>
+
+               <table>
+                <tr>
+                  <td><button class="space" id="0" onclick="fillSquare('0', turn)"></button></td>
+                  <td><button class="space" id="1" onclick="fillSquare('1', turn)"></button></td>
+                  <td><button class="space" id="2" onclick="fillSquare('2', turn)"></button></td>
+                </tr>
+                <tr>
+                  <td><button class="space" id="3" onclick="fillSquare('3', turn)"></button></td>
+                  <td><button class="space" id="4" onclick="fillSquare('4', turn)"></button></td>
+                  <td><button class="space" id="5" onclick="fillSquare('5', turn)"></button></td>
+                </tr>
+                <tr>
+                  <td><button class="space" id="6" onclick="fillSquare('6', turn)"></button></td>
+                  <td><button class="space" id="7" onclick="fillSquare('7', turn)"></button></td>
+                  <td><button class="space" id="8" onclick="fillSquare('8', turn)"></button></td>
+                </tr>
+              </table>
+
+              <div id="reset">
+                      <button id="restart" onclick="reset()">Reset Board</button>
+              </div>
+        
+          
+
+        </body>
+</html>
