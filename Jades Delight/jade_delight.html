@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jade Delight</title>
+
+<style>
+      
+	.userInfo {
+	  display: flex;
+	  align-items: center;
+	  margin-bottom: 10px;
+	}
+      
+	.userInfo label {
+	  flex-basis: 100px;
+	  margin-right: 10px;
+	  text-align: right;
+	}
+	
+	.userInfo.address {
+	  display: flex !important;
+	  align-items: center !important;
+	  margin-bottom: 10px !important;
+	}
+      
+	.userInfo.address label {
+	  flex-basis: 100px !important;
+	  margin-right: 10px !important;
+	  text-align: right !important;
+	}
+
+
+      </style>
+</head>
+
+<body>
+<script>
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 5.5),
+	new MenuItem("Sweet and Sour Pork", 7.25),
+	new MenuItem("Shrimp Lo Mein", 6.80),
+	new MenuItem("Moo Shi Chicken", 9.50),
+	new MenuItem("Fried Rice", 3.25)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function td(content, className="")
+{
+	return "<td class = '" + className + "'>" + content + "</td>";
+}
+	
+</script>
+
+<h1>Jade Delight</h1>
+<form name="orderForm" onsubmit="return validate()">
+
+<p class="userInfo"><label>First Name:</label> <input type="text"  name='fname' /></p>
+<p class="userInfo"><label>Last Name*:</label>  <input type="text"  name='lname' /></p>
+<p class="userInfo address"><label>Street*:</label> <input type="text" name='street' /></p>
+<p class="userInfo address"><label>City*:</label> <input type="text" name='city' /></p>
+<p class="userInfo"><label>Phone*:</label> <input type="text"  name='phone' /></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script>
+	radioButtons();
+	document.addEventListener("change", update);
+
+	function update(){
+		radioButtons();
+		totalCost();
+	}
+	
+	function radioButtons() {
+		var streetCity = document.getElementsByClassName("userInfo address");
+
+		if (document.orderForm.p_or_d[0].checked) {
+			streetCity[0].style.visibility = "hidden";
+			streetCity[1].style.visibility = "hidden";
+			return "pickup";
+		} else if (document.orderForm.p_or_d[1].checked) {
+			streetCity[0].style.visibility = "visible";
+			streetCity[1].style.visibility = "visible";
+			return "delivery";
+		}
+		
+	}
+
+	function totalCost() {
+		//variables
+		var costs = document.orderForm.cost;
+		var sub = document.orderForm.subtotal;
+		var subNum = 0;
+		var tax = document.orderForm.tax;
+		var taxNum = 0;
+		var total = document.orderForm.total;
+
+		var quantity = document.getElementsByTagName('select');
+		var itemsOrdered = new Array();
+		
+		//loop and set the value fields
+		for (i = 0; i < menuItems.length; i++) {
+			costs[i].value = (quantity[i].value * menuItems[i].cost).toFixed(2);
+			subNum += parseFloat(costs[i].value);
+			itemsOrdered[i] = parseInt(quantity[i].value);
+		}
+
+		//set bottom form fields
+		sub.value = subNum.toFixed(2);
+
+		taxNum = (subNum * .0625).toFixed(2);
+		tax.value = taxNum;
+
+		total.value = (parseFloat(taxNum) + parseFloat(subNum)).toFixed(2);
+
+		//return for validation purposes
+		return itemsOrdered;
+	}
+
+	function validate() {
+		//check if an item has been ordered
+		itemCount = totalCost();
+		var numItems = 0;
+
+		for (i = 0; i < itemCount.length; i++) {
+			numItems += itemCount[i];
+		}
+		if (numItems <= 0) {
+			alert("You havn't ordered anything");
+			return false;
+		}
+
+
+		//check if first name has been entered
+		if (document.orderForm.fname.value == "") {
+			document.orderForm.fname.select();
+			alert("Please enter your first name");
+			return false;
+		}
+		//check for last name
+		if (document.orderForm.lname.value == "") {
+			document.orderForm.lname.select();
+			alert("Please enter your last name");
+			return false;
+		}
+
+		//Phone number validation
+		var phoneLength = document.orderForm.phone.value.replace(/[^0-9]/g,"").length;
+		if (phoneLength != 7 && phoneLength != 10) {
+			alert("Please enter a valid phone number");
+			document.orderForm.phone.select();
+			return false;
+		}
+
+		//verify city street if its delivery
+		if (radioButtons() == "delivery") {
+			if (document.orderForm.street.value == "") {
+				document.orderForm.street.select();
+				alert("Please enter your street address for delivery");
+				return false;
+			}
+			if (document.orderForm.city.value == "") {
+				document.orderForm.city.select();
+				alert("Please enter your city for delivery");
+				return false;
+			}
+		}
+
+		//All info is good
+		alert("Thank you for your order. It will be ready soon");
+		var details = window.open();
+
+		details.document.write("<h1>Jade Delight Reciept</h1>");
+		if (radioButtons() == "pickup"){
+			details.document.write("<h2>Order for: Pickup</h2>");
+
+			//print the pickup time
+			time = new Date();
+			hour = time.getHours();
+			minute = time.getMinutes();
+			if (!(minute + 15 < 60)) {
+				minute = (minute + 15) % 60;
+				hour = (hour + 1) % 12
+			} else {
+				minute = minute + 15;
+				hour = hour % 12;
+			}
+			if (hour == 0) {
+				hour = 12;
+			}
+			pickupTime = "Pickup Time - " + hour + ":";
+			if (minute < 10) {
+				pickupTime += "0";
+			}
+			pickupTime += minute;
+			details.document.write(pickupTime);
+		} else {
+			//print the delivery time
+			details.document.write("<h2>Order for: Delivery</h2>");
+			//print the delivery address
+			address = "Delivering to: " + document.orderForm.street.value + ", " + document.orderForm.city.value + "<br>";
+			details.document.write(address);
+
+			//print the delivery time
+			time = new Date();
+			hour = time.getHours();
+			minute = time.getMinutes();
+			if (!(minute + 45 < 60)) {
+				minute = (minute + 45) % 60;
+				hour = (hour + 1) % 12;
+			} else {
+				minute = minute + 45;
+				hour = hour % 12;
+			}
+			if (hour == 0) {
+				hour = 12;
+			}
+			deliveryTime = "Delivery Time - " + hour + ":";
+			if (minute < 10) {
+				deliveryTime += "0";
+			}
+			deliveryTime += minute;
+			details.document.write("<strong>" + deliveryTime + "</strong>");
+
+
+		}
+
+		//print item information
+		details.document.write("<br>");
+		var info = "";
+		for (i = 0; i < menuItems.length; i++) {
+			info += menuItems[i].name + ": x" + itemCount[i] + " - " + parseFloat(menuItems[i].cost).toFixed(2) + "<br>";
+		}
+		details.document.write(info + "<br>");
+
+		//print subtotal, tax, and total
+		sub = document.orderForm.subtotal.value;
+		tax = document.orderForm.tax.value;
+		total = document.orderForm.total.value;
+		info = "Subtotal: $" + sub + "<br>";
+		info += "Massachussets sales tax: $"  + tax + "<br><br>";
+		info += "Total: $" + total;
+
+		details.document.write(info);
+		
+	}
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr>";
+	  s += td(makeSelect("quan" + i, 0, 10),"selectQuantity");
+	  s += td(menuItems[i].name, "itemName");
+	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
+	  s += td("$<input type='text' name='cost'/>", "totalCost");
+	  s+= "</tr>";
+  }
+  document.writeln(s);
+</script>
+</table>
+<p class="subtotal totalSection"><label>Subtotal</label>: 
+   $ <input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p class="tax totalSection"><label>Mass tax 6.25%:</label>
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p class="total totalSection"><label>Total:</label> $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "submit" value = "Submit Order" />
+
+</form>
+</body>
+</html>
