@@ -1,0 +1,93 @@
+{
+        "songs": [
+        {
+          "title": "Radioactive",
+          "artists": ["Imagine Dragons"],
+          "genres": ["Pop", "Alternative"],
+          "releaseYear": 2012
+        },
+        {
+          "title": "Mountain Sound",
+          "artists": ["Of Monsters And Men"],
+          "genres": ["Indie", "Folk"],
+          "releaseYear": 2011
+        },
+        {
+          "title": "Finish Line",
+          "artists": ["Chance the Rapper", "Eryn Allen Kane", "T-Pain", "Kirk Franklin"],
+          "genres": ["Rap", "RnB"],
+          "releaseYear": 2016
+        },
+        {
+          "title": "Fly As Me",
+          "artists": ["Silk Sonic", "Bruno Mars", "Anderson .Paak"],
+          "genres": ["Soul", "Funk"],
+          "releaseYear": 2021
+        },
+        {
+          "title": "Welcome to Paradise",
+          "artists": ["Green Day"],
+          "genres": ["Rock"],
+          "releaseYear": 1991
+        },
+        {
+          "title": "All Too Well",
+          "artists": ["Taylor Swift"],
+          "genres": ["Pop", "Country"],
+          "releaseYear": 2012
+        },
+        {
+          "title": "Good Old Days",
+          "artists": ["Macklemore", "Ryan Lewis", "Ke$ha"],
+          "genres": ["Hip-Hop"],
+          "releaseYear": 2017
+        },
+        {
+          "title": "Gold On the Ceiling",
+          "artists": ["The Black Keys"],
+          "genres": ["Alternative", "Rock"],
+          "releaseYear": 2011
+        },
+        {
+          "title": "Purple Haze",
+          "artists": ["Jimi Hendrix"],
+          "genres": ["Rock"],
+          "releaseYear": 1967
+        },
+        {
+          "title": "Banana Pancakes",
+          "artists": ["Jack Johnson"],
+          "genres": ["Acoustic", "Pop"],
+          "releaseYear": 2005
+        },
+        {
+          "title": "Maple Syrup",
+          "artists": ["Backseat Lovers"],
+          "genres": ["Alternative", "Rock"],
+          "releaseYear": 2019
+        },
+        {
+          "title": "Stay Next To ME",
+          "artists": ["Quinn XCII", "Chelsea Cutler"],
+          "genres": ["Pop"],
+          "releaseYear": 2021
+        },
+        {
+          "title": "Note to Me",
+          "artists": ["4rif"],
+          "genres": ["RnB", "Rap"],
+          "releaseYear": 2022
+        },
+        {
+          "title": "Knock Knock",
+          "artists": ["Mac Miller"],
+          "genres": ["Hip Hop", "Rap"],
+          "releaseYear": 2010
+        },
+        {
+          "title": "Landslide",
+          "artists": ["Fleetwood Mac"],
+          "genres": ["Folk", "Pop"],
+          "releaseYear": 1975
+        }
+      ]}
