@@ -1,11 +1,90 @@
 <html lang="en">
 <head>
+        <style>
+                * {
+                        font-family: cursive !important;
+                }
+        </style>
         <title>Json Songs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
         <script>
-                
+                fetch('https://adam-weiss8.github.io/CS20/JsonSongs/songs.json')
+                .then(response => response.json())
+                .then(data => {
+                        var list = data.songs;
+                        var printdata = "";
+                        var genreArray = new Array;
+                        //loop and print all data nicely
+                        for (i = 0; i < list.length; i++) {
+                                //create a div for the current song and add classes for the genres
+                               var newDiv = $("<div>");
+                               for (j = 0; j < list[i].genres.length; j++){
+                                        newDiv.addClass(list[i].genres[j]);
+                                        if(!genreArray.includes(list[i].genres[j])) {
+                                                genreArray.push(list[i].genres[j]);
+                                        }
+                               }
+                               
+
+                               //title
+                               printdata += "Title: " + list[i].title + "<br>";
+
+                               //artists
+                               printdata += "Artists: ";
+                               for (k = 0; k < list[i].artists.length; k++) {
+                                        printdata += list[i].artists[k];
+                                        if (k != list[i].artists.length - 1) {
+                                                printdata += ", ";
+                                        }
+                               }
+                               printdata += "<br>";
+
+                               //genres
+                               printdata += "Genres: ";
+                               for (n = 0; n < list[i].genres.length; n++) {
+                                        printdata += list[i].genres[n];
+                                        if (n != list[i].genres.length - 1) {
+                                                printdata += ", ";
+                                        }
+                               }
+
+                               printdata += "<br>";
+
+                               //year
+                               printdata += "Year: " + list[i].releaseYear + "<br><br>";
+                               
+                               //add the data to the div and append it to the main div
+                               newDiv.html(printdata);
+                               $("#songs").append(newDiv);
+                               printdata = "";
+
+                        }
+
+                        for (numGenres = 0; numGenres < genreArray.length; numGenres++) {
+                                let newoption = $("<option>");
+                                newoption.val(genreArray[numGenres]);
+                                newoption.text(genreArray[numGenres]);
+                                $("#dropdown").append(newoption);
+                        }
+                        
+                });
+
+                function filter() {
+                        var filterValue = $("#dropdown").val();
+                        $("#songs").children().hide();
+                        $("." + filterValue).show();     
+                }
+
         </script>
+
+        
+                <H1>JSON SONG LIST</H1>
+                <select id="dropdown"></select>
+                <button id="filter" onclick="filter()">filter</button>
+        
+
+        <div id="songs"></div>
 </body>
 </html>
