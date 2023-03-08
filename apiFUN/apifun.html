@@ -1,0 +1,292 @@
+<html>
+        <head>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+                <title>Pokemon API Fun</title>
+
+                <style>
+                        
+                        table {
+                                border-collapse: collapse;
+                                margin: 25px 0;
+                                font-size: 0.9em;
+                                font-family: sans-serif;
+                                min-width: 400px;
+                                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                        }
+
+                        tr:nth-of-type(1) {
+                                background-color: #009879;
+                                color: #ffffff;
+                                text-align: left;
+                        }
+
+                        th {
+                                padding: 12px, 15px;
+                        }
+
+                        td {
+                                padding: 12px, 15px;
+                        }
+
+                        tr {
+                                border-bottom: 1px solid #dddddd;
+                        }
+
+                        tr:nth-of-type(even) {
+                                background-color: #f3f3f3;
+                        }
+
+                        tr:last-of-type {
+                                border-bottom: 2px solid #009879;
+                        }
+
+                        img {
+                                width: 130px;
+                        }
+                </style>
+
+                <script>
+                        function displayAjax() {
+                                var pokename = $("#pokename").val();
+                                var apiURL = "https://pokeapi.co/api/v2/pokemon/" + pokename;
+                                // Send a GET request to the API endpoint
+                                $.ajax({
+                                        url: apiURL,
+                                        method: 'GET',
+                                        success: function(data) {
+                                                //Pokemon found! print data;
+                                                
+                                                //wipe current data
+                                                $("#apidata").html("");
+                                                $("#tables").html("");
+
+                                                //print the name 
+                                                var pokenamediv = $("<h2>").html(pokename.toUpperCase());
+                                                $("#apidata").append(pokenamediv);
+
+                                                //print the type
+                                                var poketypeString = "Type: ";
+                                                for (i = 0; i < data.types.length; i++) {
+                                                        poketypeString += data.types[i].type.name;
+                                                        if (i != data.types.length - 1) {
+                                                                poketypeString += ", ";
+                                                        }
+                                                }
+                                                var poketypediv =  $("<h3>").html(poketypeString);
+                                                $("#apidata").append(poketypediv);
+
+
+                                                //display the picture
+                                                var pokepicurl = data.sprites.front_default;
+                                                var pokepic = $("<img>").attr("src", pokepicurl);
+                                                $("#apidata").append(pokepic);
+                                                
+
+
+                                                //display basestats
+                                                var statTable = $('<table>');
+                                                var statTableHead = $("<tr>").html("<th>Stat Name</th> <th>Base Value</th>");
+                                                statTable.append(statTableHead);
+
+                                                for (n = 0; n < data.stats.length; n++) {
+                                                        row = $("<tr>");
+                                                        cellstatname = $("<td>").html(data.stats[n].stat.name);
+                                                        cellstatpower = $("<td>").html(data.stats[n].base_stat.toString()); 
+                                                        row.append(cellstatname);
+                                                        row.append(cellstatpower);
+                                                        statTable.append(row);
+                                                }
+
+                                                // Add the table to the page
+                                                $("#tables").append(statTable);
+
+                                                //display moveset
+                                                var moveTable = $('<table>');
+                                                var moveTableHead = $("<tr>").html("<th>Move Name</th><th>Move Name</th><th>Move Name</th>");
+                                                moveTable.append(moveTableHead);
+
+                                                for (m = 0; m < data.moves.length; m++) {
+                                                        if (m % 3 == 0) {
+                                                                row = $("<tr>");
+                                                                movename1 = $("<td>").html(data.moves[m].move.name);
+                                                                row.append(movename1);
+                                                        }
+                                                        if (m % 3 == 1) {
+                                                                movename2 = $("<td>").html(data.moves[m].move.name);
+                                                                row.append(movename2);
+                                                        
+                                                        }
+                                                        if (m % 3 == 2) {
+                                                                movename3 = $("<td>").html(data.moves[m].move.name);
+                                                                row.append(movename3);
+                                                                moveTable.append(row);
+                                                        }
+                                                }
+                                                moveTable.append(row);
+
+                                                // Add the table to the page
+                                                $("#tables").append(moveTable);
+
+
+                                                //create a table for the games the pokemon was in and its pokedex number for each
+                                                var table = $('<table>');
+                                                var tableHead = $("<tr>").html("<th>Game</th> <th>Pokedex Number</th>");
+                                                table.append(tableHead);
+
+                                                for (j = 0; j < data.game_indices.length; j++) {
+                                                        row = $("<tr>");
+                                                        cellgame = $("<td>").html(data.game_indices[j].version.name);
+                                                        celldex = $("<td>").html(data.game_indices[j].game_index.toString()); 
+                                                        row.append(cellgame);
+                                                        row.append(celldex);
+                                                        table.append(row);
+                                                }
+
+                                                // Add the table to the page
+                                                $("#tables").append(table);
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown) {
+
+                                                $("#apidata").html("");
+                                                $("#tables").html("");
+                                                //pokemon not found
+                                                $("#apidata").html("<H2>Pokemon Not Found: (check spelling and ensure all lowercase)</H2>");
+                                        }
+                                });
+                                
+                        }
+
+                        function displayFetch() {
+                                var pokename = $("#pokename").val();
+                                var apiURL = "https://pokeapi.co/api/v2/pokemon/" + pokename;
+
+                                //api call
+                                fetch(apiURL)
+                                .then(response => response.json())
+                                .then(data => {
+                                        //Pokemon found! print data;
+                                                
+                                                //wipe current data
+                                                $("#apidata").html("");
+                                                $("#tables").html("");
+
+
+                                                //print the name 
+                                                var pokenamediv = $("<h2>").html(pokename.toUpperCase());
+                                                $("#apidata").append(pokenamediv);
+
+                                                //print the type
+                                                var poketypeString = "Type: ";
+                                                for (i = 0; i < data.types.length; i++) {
+                                                        poketypeString += data.types[i].type.name;
+                                                        if (i != data.types.length - 1) {
+                                                                poketypeString += ", ";
+                                                        }
+                                                }
+                                                var poketypediv =  $("<h3>").html(poketypeString);
+                                                $("#apidata").append(poketypediv);
+
+
+                                                //display the picture
+                                                var pokepicurl = data.sprites.front_default;
+                                                var pokepic = $("<img>").attr("src", pokepicurl);
+                                                $("#apidata").append(pokepic);
+                                                
+
+
+                                                //display basestats
+                                                var statTable = $('<table>');
+                                                var statTableHead = $("<tr>").html("<th>Stat Name</th> <th>Base Value</th>");
+                                                statTable.append(statTableHead);
+
+                                                for (n = 0; n < data.stats.length; n++) {
+                                                        row = $("<tr>");
+                                                        cellstatname = $("<td>").html(data.stats[n].stat.name);
+                                                        cellstatpower = $("<td>").html(data.stats[n].base_stat.toString()); 
+                                                        row.append(cellstatname);
+                                                        row.append(cellstatpower);
+                                                        statTable.append(row);
+                                                }
+
+                                                // Add the table to the page
+                                                $("#tables").append(statTable);
+
+                                                //display moveset
+                                                var moveTable = $('<table>');
+                                                var moveTableHead = $("<tr>").html("<th>Move Name</th><th>Move Name</th><th>Move Name</th>");
+                                                moveTable.append(moveTableHead);
+
+                                                for (m = 0; m < data.moves.length; m++) {
+                                                        if (m % 3 == 0) {
+                                                                row = $("<tr>");
+                                                                movename1 = $("<td>").html(data.moves[m].move.name);
+                                                                row.append(movename1);
+                                                        }
+                                                        if (m % 3 == 1) {
+                                                                movename2 = $("<td>").html(data.moves[m].move.name);
+                                                                row.append(movename2);
+                                                        
+                                                        }
+                                                        if (m % 3 == 2) {
+                                                                movename3 = $("<td>").html(data.moves[m].move.name);
+                                                                row.append(movename3);
+                                                                moveTable.append(row);
+                                                        }
+                                                }
+                                                moveTable.append(row);
+
+                                                // Add the table to the page
+                                                $("#tables").append(moveTable);
+
+
+                                                //create a table for the games the pokemon was in and its pokedex number for each
+                                                var table = $('<table>');
+                                                var tableHead = $("<tr>").html("<th>Game</th> <th>Pokedex Number</th>");
+                                                table.append(tableHead);
+
+                                                for (j = 0; j < data.game_indices.length; j++) {
+                                                        row = $("<tr>");
+                                                        cellgame = $("<td>").html(data.game_indices[j].version.name);
+                                                        celldex = $("<td>").html(data.game_indices[j].game_index.toString()); 
+                                                        row.append(cellgame);
+                                                        row.append(celldex);
+                                                        table.append(row);
+                                                }
+
+                                                // Add the table to the page
+                                                $("#tables").append(table);
+                                })
+                                .catch(error => {
+
+                                        $("#apidata").html("");
+                                        $("#tables").html("");
+                                         //pokemon not found
+                                         $("#apidata").html("<H2>Pokemon Not Found: (check spelling and ensure all lowercase)</H2>");
+                                });
+
+                        }
+
+                </script>
+        </head>
+        <body>
+                <h1>Pokemon Finder!</h1>
+              Pokemon name: <input type="text" id="pokename">
+              <button id="findAjax" onclick="displayAjax()">Ajax</button>
+              <button id="findFetch" onclick="displayFetch()">Fetch</button>
+
+              <div id="apidata"></div>
+              <div id="tables"></div>
+
+              <br><br><br><br>
+              <p style="width: 600px;">
+                What API: I used PokeAPI. This API returns info about different Pokemon
+                such as what games they were in, their moves, their type, pictures of them, etc. <br><br>
+                API Site: https://pokeapi.co/ <br><br>
+                Options used: The API requires just the name of the pokemon and it will return all the info for that pokemon.<br><br>
+                Applications: This API could be used when making a website that requires information about any pokemon. It could
+                also be used similar to how I'm using it as a query site to serve as a sort of encyclopedia. 
+
+
+              </p>
+        </body>
+</html>
