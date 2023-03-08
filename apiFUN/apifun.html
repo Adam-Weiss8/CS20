@@ -47,7 +47,7 @@
 
                 <script>
                         function displayAjax() {
-                                var pokename = $("#pokename").val();
+                                var pokename = $("#pokename").val().toLowerCase();
                                 var apiURL = "https://pokeapi.co/api/v2/pokemon/" + pokename;
                                 // Send a GET request to the API endpoint
                                 $.ajax({
@@ -157,7 +157,7 @@
                         }
 
                         function displayFetch() {
-                                var pokename = $("#pokename").val();
+                                var pokename = $("#pokename").val().toLowerCase();
                                 var apiURL = "https://pokeapi.co/api/v2/pokemon/" + pokename;
 
                                 //api call
