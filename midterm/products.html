@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Page</title>
+  <style>
+@media screen and (max-width: 600px) {
+        div#nav ul {
+                margin-right: 20px !important;
+        }
+        
+        div#nav ul li {
+                margin-top: 35px !important;
+        }
+        div#nav ul li a {
+                
+                font-size: 10px !important;
+                padding: 20px !important;
+        }
+        
+        #nav {
+                height: 75px !important;
+        }
+
+        .logo-img {
+                width: 75px !important;
+                height: 75px !important;
+        }
+
+        #nav:hover li{
+                padding: 1px !important;
+                transition: 1s !important;
+        }
+}
+* {
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important
+}
+
+body {
+        margin: 0px;
+        margin-bottom: 0px;
+}
+
+div#nav ul {
+        list-style: none;
+        text-align: right;
+        margin-right: 100px;
+        margin-top: 0px;
+}
+
+div#nav ul li {
+        display: inline-block;
+        margin-top: 50px;
+        transition: 1s;
+}
+div#nav ul li a {
+        text-decoration: none;
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        transition: .7s;
+        padding: 50px;
+}
+
+div#nav ul li a:hover {
+        transition: .7s;
+        color: rgb(255, 255, 255);
+}
+
+#nav {
+        margin-top: 0px;
+        height: 150px;
+        background-color: rgb(101, 190, 64);
+        transition: 1s;
+}
+
+#nav:hover li{
+        padding: 5px;
+        transition: 1s;
+}
+
+.logo-img{
+        float: left;
+        position: relative;
+        margin-left: 30px;
+        
+}
+
+
+@media screen and (max-width: 600px) {
+        #footer ul li a{
+                font-size: 10px !important;
+        }
+
+        #footer ul li {
+                padding-left: 40px !important;
+        }
+}
+
+#footer ul {
+        list-style: none;
+        text-align: center;
+        margin: 0px;
+        padding-bottom: 20px;
+}
+
+#footer {
+        background-color: navy;
+        margin: 0px;
+}
+
+#footer ul li {
+        display: inline-block;
+        padding-right: 50px;
+        padding-left: 50px;
+        transition: 1s;
+        border-right: 2px solid khaki;
+}
+
+#footer ul li:last-child {
+        border-right: none;
+}
+
+#footer ul li a {
+        color: aliceblue;
+}
+
+#footer div {
+        text-align: center;
+        font-size: 20px;
+        padding-bottom: 10px;
+        color: aliceblue;
+        margin-top: 5px;
+}
+
+#footer_logo {
+        background-color: aliceblue;
+        margin-top: 15px;
+}
+    .product {
+      width: 30%;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+    }
+
+    .product h3 {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .product p {
+      margin: 0;
+      font-size: 1em;
+    }
+
+    .quantity {
+      margin-top: 10px;
+    }
+
+    .quantity label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    .quantity input {
+      width: 50px;
+      height: 30px;
+      text-align: center;
+      font-size: 1em;
+    }
+
+    .checkout-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #77d6ff;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+    .checkout-bar button {
+    background-color: #fff;
+    color: #77d6ff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+    .checkout-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .checkout-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .checkout-item img {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    .checkout-item-details h3 {
+      margin: 0;
+      font-size: 1em;
+    }
+
+	.product img {
+	width: 100%;
+	height: 300px;
+	}
+
+    .checkout-item-details p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #777;
+    }
+	h1{
+
+text-align: center;
+
+}
+  </style>
+</head>
+<body>
+<a href="home.html"><img class="logo-img" src="logo.png" width="150" height="150" ALT="align box" ALIGN=CENTER></a>
+               <div id="nav">
+                
+                <ul>
+                        <li><a href="founders.html">Founders</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="mission.html">Mission</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+                </div>
+	<h1> Our Products: </h1>
+  <div id="product-container"></div>
+  <div class="checkout-bar">
+    <span class="checkout-items"></span>
+    <button id="checkout-button" class="checkout-button" onclick="handleQuickCheckout()">Quick Checkout</button>
+  </div>
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    var products = [
+      {
+        name: 'Help Us Plant a Pine Sapling',
+        imgSrc: "images/image1.jpg",
+        price: 9.99,
+        quantity: 0,
+		link: 'product_purchase1.html' // Update link property
+      },
+      {
+        name: 'Help Us Plant a Mangrove Sapling',
+        imgSrc: "images/image2.jpg",
+        price: 9.99,
+        quantity: 0,
+		link: 'product_purchase2.html' // Update link property
+      },
+      {
+        name: 'Help Us Plant a Large Tree',
+        imgSrc: "images/image3.jpg",
+        price: 39.99,
+        quantity: 0,
+		link: 'product_purchase3.html' // Update link property
+      },
+      {
+        name: '"Tree-Hugger" T-shirt',
+        imgSrc: "images/image4.jpg",
+        price: 29.99,
+        quantity: 0,
+		link: 'product_purchase4.html' // Update link property
+      },
+      {
+        name: '"Get Outside" T-shirt',
+        imgSrc: "images/image5.jpg",
+        price: 29.99,
+        quantity: 0,
+		link: 'product_purchase5.html' // Update link property
+      },
+      {
+        name: '"Lorax" T-shirt',
+        imgSrc: "images/image6.jpg",
+        price: 29.99,
+        quantity: 0,
+		link: 'product_purchase6.html' // Update link property
+      }
+    ];
+
+
+    // Create product elements
+for (var i = 0; i < products.length; i++) {
+  var product = products[i];
+  var html = '<div class="product">' +
+    '<a href="' + product.link + '">' +
+      '<img src="' + product.imgSrc + '">' +
+      '<h3>' + product.name + '</h3>' +
+    '</a>' +
+    '<p>$' + product.price.toFixed(2) + '</p>' +
+    '<div class="quantity">' +
+      '<label>Quantity</label>' +
+      '<input type="number" min="0" max="10" value="' + product.quantity + '" onclick="event.stopPropagation();">' +
+    '</div>' +
+  '</div>';
+  $('#product-container').append(html);
+}
+
+
+    // Update checkout bar on quantity change
+    $('.quantity input').on('change', function() {
+      var totalItems = 0;
+      var checkoutItems = [];
+      var totalPrice = 0;
+      for (var i = 0; i < products.length; i++) {
+        var quantity = parseInt($('.quantity input').eq(i).val());
+        products[i].quantity = quantity;
+        totalItems += quantity;
+        if (quantity > 0) {
+          totalPrice += products[i].price * quantity;
+          checkoutItems.push('<li class="checkout-item"><img src="' + products[i].imgSrc + '"><div class="checkout-item-details"><h3>' + products[i].name + '</h3><p>$' + products[i].price.toFixed(2) + ' x ' + quantity + '</p></div></li>');
+        }
+      }
+      $('.checkout-items').text('Checkout ' + totalItems + ' items. Total price $' + totalPrice.toFixed(2));
+      $('.checkout-list').html(checkoutItems.join(''));
+    });
+
+    // Increase/decrease quantity on arrow key press
+    // Update checkout bar on quantity change
+$('.quantity input').on('change', function() {
+  var totalItems = 0;
+  var checkoutItems = [];
+  var totalPrice = 0;
+  for (var i = 0; i < products.length; i++) {
+    var quantity = parseInt($('.quantity input').eq(i).val());
+    if (quantity > 10) {
+      quantity = 10; // Set quantity to maximum allowed
+      $('.quantity input').eq(i).val(quantity); // Update input field value
+    }
+    products[i].quantity = quantity;
+    totalItems += quantity;
+    if (quantity > 0) {
+      totalPrice += products[i].price * quantity;
+      checkoutItems.push('<li class="checkout-item"><img src="' + products[i].imgSrc + '"><div class="checkout-item-details"><h3>' + products[i].name + '</h3><p>$' + products[i].price.toFixed(2) + ' x ' + quantity + '</p></div></li>');
+    }
+  }
+  $('.checkout-items').text('Checkout ' + totalItems + ' items. Total price $' + totalPrice.toFixed(2));
+  $('.checkout-list').html(checkoutItems.join(''));
+});
+
+// Increase/decrease quantity on arrow key press
+$('.quantity input').on('keydown', function(e) {
+  var keyCode = e.keyCode || e.which;
+  var arrow = {left: 37, up: 38, right: 39, down: 40 };
+  var index = $('.quantity input').index(this);
+  var currentValue = parseInt($(this).val());
+  if (keyCode === arrow.up) {
+    e.preventDefault();
+    if (currentValue < 10) { // Check if current value is less than maximum allowed
+      $(this).val(currentValue + 1);
+    }
+  } else if (keyCode === arrow.down) {
+    e.preventDefault();
+    if (currentValue > 0) {
+      $(this).val(currentValue - 1);
+    }
+  }
+});
+
+
+function handleQuickCheckout() {
+  var totalItems = 0;
+  for (var i = 0; i < products.length; i++) {
+    var quantity = parseInt($('.quantity input').eq(i).val());
+    if (quantity > 0) {
+      totalItems += quantity;
+    }
+  }
+  if (totalItems == 0) {
+    alert("No items selected for purchase");
+  } else {
+    window.open("quick_checkout.html", "_blank");
+  }
+}
+
+
+</script>
+
+<br>
+<br>
+<br>
+<div id="footer">
+        <p style="text-align: center; margin: 0px;">
+                <img id="footer_logo" src="logo.png" width="100" height="100">
+        </p>
+        <div>Copyright &copy; 2023 Lorax, Inc.</div>
+        <ul id="footer_links">
+                <li class="footer_link"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank">Privacy Policy</a></li>
+                <li class="footer_link"><a href="">Mission statement</a></li>
+                <li class="footer_link"><a href="">Plant A Tree!</a></li>
+
+        </ul>
+</div>
+
+</body>
+</html>
